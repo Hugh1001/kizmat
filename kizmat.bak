@@ -1,0 +1,39 @@
+docker run --name postgres-db -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=pgpwd -e POSTGRES_DB=paymentddb -d postgres:latest
+
+version: "3.9"
+services:
+  postgres:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "habrdb"
+      POSTGRES_USER: "habrpguser"
+      POSTGRES_PASSWORD: "pgpwd4habr"
+    ports:
+      - "5432:5432"
+	  
+	  
+	  
+	  
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJleHAiOjE3NDE0MzM1NzF9.3CW_iDbx6EF55v9sjhUCJorWXu-yCyXzu7510nrpTAo
+
+###
+POST https://localhost:44366/login
+Content-Type: application/json
+
+{
+    "Username": "admin",
+    "Password": "password"
+}
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJleHAiOjE3NDE0NDg3MzB9.UjMIyYN2uS5ENxXBfJMCPq1_pR4wQETjIrWvNbYM0ws"
+}
+
+###
+GET https://localhost:44366/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImp0aSI6IjZhZWFjMmEwLTQ1ZjEtNDFhNC1hNzFkLTQ0MGQ0OTIyYTQ4ZiIsImV4cCI6MTc0MTQ1MjUwN30.dXc9cB-SzmIoAFfQ-sfXrFiUOyzseR5M5QtnJ4HPPaI
+
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImp0aSI6ImM2NzYxMGYzLThmZDYtNGM5NC1iMGVhLTk5MTRkOTc0NmRmZCIsImV4cCI6MTc0MTQ2NTg3OX0.wORTDNOxxnuY7GnqIG23M4VA6X3afvkKGUmL92SpDe4"
+}
