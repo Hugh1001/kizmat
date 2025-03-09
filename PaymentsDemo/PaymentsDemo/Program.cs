@@ -109,7 +109,7 @@ app.MapPost("/logout", (ClaimsPrincipal user, IMemoryCache cache) =>
     return Task.FromResult(Results.Ok("Logged out successfully"));
 }).RequireAuthorization(TokenNotBlacklistedRequirement.AuthorizationRequirementName);
 
-// execute payment endpoint, ckeck user account existence, create if not exists, and update balance using positive concurrency
+// execute payment endpoint, check user account existence, create if not exists, and update balance using positive concurrency
 app.MapGet("/execute-payment", async (ClaimsPrincipal user, [FromServices] IBalanceService balanceService) =>
 {
     var userIdClaim = user.FindFirstValue("UserId");
