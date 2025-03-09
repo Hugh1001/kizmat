@@ -1,10 +1,9 @@
 using PaymentsDemo.Models;
 
-namespace PaymentsDemo.Services;
+namespace PaymentsDemo.Repositories;
 
-public interface IUserService
+public interface IUserRepository
 {
     Task<User?> GetUserByUsernameAsync(string username);
     Task CreateUserAsync(string username, string password);
-    bool VerifyPassword(string password, string storedHash);
 }

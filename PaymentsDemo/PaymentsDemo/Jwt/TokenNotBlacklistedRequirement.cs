@@ -1,24 +1,19 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Caching.Memory;
+using PaymentsDemo.Services;
 
 namespace PaymentsDemo.Jwt;
 
-public class TokenNotBlacklistedHandler(IMemoryCache cache)
-    : AuthorizationHandler<TokenNotBlacklistedRequirement>
+public class TokenNotBlacklistedHandler(IJwtService jwtService) : AuthorizationHandler<TokenNotBlacklistedRequirement>
 {
-    protected override Task HandleRequirementAsync(
-        AuthorizationHandlerContext context, TokenNotBlacklistedRequirement requirement)
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, TokenNotBlacklistedRequirement requirement)
     {
-        var jti = context.User.FindFirstValue(JwtRegisteredClaimNames.Jti);
-        if (string.IsNullOrEmpty(jti) || cache.Get(jti) != null)
+        if (jwtService.IsTokenValid(context.User))
         {
-            context.Fail();
+            context.Succeed(requirement);
         }
         else
         {
-            context.Succeed(requirement);
+            context.Fail();
         }
 
         return Task.CompletedTask;
